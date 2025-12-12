@@ -1,0 +1,22 @@
+{% extends "someapp/base.html" %}
+{% block title %}{{ product.name }} | Armory{% endblock %}
+{% block content %}
+  <p class="tag">{{ product.category }}</p>
+  <h1 class="section-title">{{ product.name }}</h1>
+  <div class="hero" style="margin-bottom: 12px;">
+    <div>
+      <p class="price">{{ product.price }} $</p>
+      <p class="muted">{{ product.summary }}</p>
+      <ul style="padding-left: 18px; color: var(--muted);">
+        {% for item in product.details %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      <a href="/" style="color: var(--accent);">← назад к каталогу</a>
+    </div>
+    {% if product.image_url %}
+      <img src="{{ product.image_url }}" alt="{{ product.name }}">
+    {% endif %}
+  </div>
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends "someapp/base.html" %}
+{% block title %}Каталог | Armory{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div>
+      <h1 class="section-title">Минималистичный каталог оружия</h1>
+      <p class="muted">Выберите позицию, чтобы увидеть детали: характеристики, краткое описание и цену.</p>
+    </div>
+  </section>
+
+  <div class="grid">
+    {% for product in products %}
+      <a class="card" href="{% url 'product_detail' slug=product.slug %}">
+        <p class="tag">{{ product.category }}</p>
+        <h3 style="margin: 6px 0 8px;">{{ product.name }}</h3>
+        <p class="muted" style="min-height: 54px;">{{ product.summary }}</p>
+        {% if product.image %}
+          <img src="{{ product.image }}" alt="{{ product.name }}">
+        {% endif %}
+        <p class="price">{{ product.price }} $</p>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
